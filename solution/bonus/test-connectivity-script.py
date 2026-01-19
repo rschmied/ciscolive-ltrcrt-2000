@@ -30,7 +30,10 @@ class VlanSetup(aetest.CommonSetup):
     # Subsection to prepare test cases
     @aetest.subsection
     def prepare_testcases(self, testbed):
-        # Mark the ConnCheck test case to run for each host device in the testbed
+        # Mark the ConnCheck test case to run for each host device in the
+        # testbed This selects the host node and the ConnCheck functions will
+        # be executed on that particular node(s) only. Note that all methods
+        # within the ConnCheck test class will be executed
         aetest.loop.mark(
             ConnCheck, device=[d.name for d in testbed if (d.type == "host")]
         )
@@ -111,7 +114,7 @@ class ConnCheck(aetest.Testcase):
 
     @aetest.test
     def check_curl(self, device):
-        if "CiscoLive 2025 and LTRCRT-2000" not in self.curl:
+        if "Your production network is looking good" not in self.curl:
             self.failed(f"cURL to {TEST_URL} failed from {device}: '{self.curl}'!")
         else:
             self.passed(f"Loaded {TEST_URL} successfully from {device}\n{self.curl}")
