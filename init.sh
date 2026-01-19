@@ -32,5 +32,5 @@ cd ${LAB}/gitlab
 make
 cd ${cwd}
 echo "Pulling pipeline image"
-docker pull ralphschmieder/ltrcrt-2000:26.1.0
+docker pull ralphschmieder/ltrcrt2000:26.1.0
 echo "Done!"
